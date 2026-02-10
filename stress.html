@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HeartWatcher AI - Stress & Heart Impact Analysis">
+    <title>Stress Analysis - HeartWatcher AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" role="navigation" aria-label="Main navigation">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                    </svg>
+                    <h1>HeartWatcher AI</h1>
+                </div>
+            </div>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="index.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="stress.html" class="nav-link active" aria-current="page">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                        <span>Stress Analysis</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="alerts.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+                        </svg>
+                        <span>Alerts & Medications</span>
+                        <span class="badge">3</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button class="btn-voice" id="voiceAssistant" aria-label="Activate voice assistant">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 01-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <span>Voice Assistant</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-info">
+                    <h2>Stress & Heart Impact</h2>
+                    <p class="header-subtitle">Understanding your stress patterns and cardiovascular health</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-icon" aria-label="Settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Current Stress Level -->
+            <section class="stress-overview" aria-label="Current stress level">
+                <div class="stress-gauge-card">
+                    <h3>Current Stress Level</h3>
+                    <div class="stress-gauge">
+                        <svg viewBox="0 0 200 120" class="gauge-svg">
+                            <!-- Background arc -->
+                            <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#2a2a3e" stroke-width="20" stroke-linecap="round"/>
+                            <!-- Colored segments -->
+                            <path d="M 20 100 A 80 80 0 0 1 64 37" fill="none" stroke="#4CAF50" stroke-width="20" stroke-linecap="round"/>
+                            <path d="M 64 37 A 80 80 0 0 1 100 20" fill="none" stroke="#8BC34A" stroke-width="20" stroke-linecap="round"/>
+                            <path d="M 100 20 A 80 80 0 0 1 136 37" fill="none" stroke="#FFC107" stroke-width="20" stroke-linecap="round"/>
+                            <path d="M 136 37 A 80 80 0 0 1 180 100" fill="none" stroke="#FF5722" stroke-width="20" stroke-linecap="round"/>
+                            <!-- Needle -->
+                            <line id="stressNeedle" x1="100" y1="100" x2="100" y2="30" stroke="#fff" stroke-width="3" stroke-linecap="round" style="transform-origin: 100px 100px; transform: rotate(-60deg);"/>
+                            <circle cx="100" cy="100" r="8" fill="#fff"/>
+                        </svg>
+                        <div class="stress-value">
+                            <span class="value-large" id="stressScore">28</span>
+                            <span class="value-label">Low Stress</span>
+                        </div>
+                    </div>
+                    <div class="stress-scale">
+                        <span>Low</span>
+                        <span>Moderate</span>
+                        <span>High</span>
+                    </div>
+                </div>
+
+                <!-- Stress Impact Summary -->
+                <div class="impact-summary">
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                            </svg>
+                        </div>
+                        <div class="impact-content">
+                            <h4>Heart Rate Impact</h4>
+                            <p class="impact-value">+5 BPM</p>
+                            <p class="impact-description">Minimal increase from baseline</p>
+                        </div>
+                    </div>
+
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </div>
+                        <div class="impact-content">
+                            <h4>HRV Impact</h4>
+                            <p class="impact-value">-3 ms</p>
+                            <p class="impact-description">Within normal variation</p>
+                        </div>
+                    </div>
+
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M2 12h20"></path>
+                            </svg>
+                        </div>
+                        <div class="impact-content">
+                            <h4>Blood Pressure</h4>
+                            <p class="impact-value">120/80</p>
+                            <p class="impact-description">Normal range</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stress Timeline -->
+            <section class="stress-timeline-section" aria-label="Daily stress timeline">
+                <h3 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Today's Stress Timeline
+                </h3>
+
+                <div class="timeline-chart">
+                    <canvas id="stressTimelineChart" aria-label="Stress levels throughout the day"></canvas>
+                </div>
+
+                <div class="timeline-events">
+                    <h4>Detected Events</h4>
+                    <div class="event-list">
+                        <div class="event-item event-normal">
+                            <div class="event-time">8:30 AM</div>
+                            <div class="event-content">
+                                <h5>Morning Routine</h5>
+                                <p>Normal stress levels during morning activities</p>
+                            </div>
+                            <div class="event-indicator"></div>
+                        </div>
+
+                        <div class="event-item event-elevated">
+                            <div class="event-time">11:15 AM</div>
+                            <div class="event-content">
+                                <h5>Mild Stress Episode</h5>
+                                <p>Elevated heart rate detected. Lasted 12 minutes.</p>
+                            </div>
+                            <div class="event-indicator"></div>
+                        </div>
+
+                        <div class="event-item event-recovery">
+                            <div class="event-time">1:00 PM</div>
+                            <div class="event-content">
+                                <h5>Rest Period</h5>
+                                <p>Relaxation detected. Vitals returned to baseline.</p>
+                            </div>
+                            <div class="event-indicator"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stress Triggers Analysis -->
+            <section class="triggers-section" aria-label="Stress triggers">
+                <h3 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    Common Stress Triggers
+                </h3>
+
+                <div class="triggers-grid">
+                    <div class="trigger-card">
+                        <div class="trigger-icon">⏰</div>
+                        <h4>Time of Day</h4>
+                        <p>Most stress occurs between <strong>10 AM - 12 PM</strong></p>
+                        <div class="trigger-bar">
+                            <div class="trigger-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="trigger-card">
+                        <div class="trigger-icon">🏃</div>
+                        <h4>Activity Level</h4>
+                        <p>Moderate activity reduces stress by <strong>40%</strong></p>
+                        <div class="trigger-bar">
+                            <div class="trigger-fill trigger-fill-positive" style="width: 60%"></div>
+                        </div>
+                    </div>
+
+                    <div class="trigger-card">
+                        <div class="trigger-icon">😴</div>
+                        <h4>Sleep Quality</h4>
+                        <p>Better sleep correlates with <strong>lower stress</strong></p>
+                        <div class="trigger-bar">
+                            <div class="trigger-fill trigger-fill-positive" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="trigger-card">
+                        <div class="trigger-icon">☕</div>
+                        <h4>Caffeine Intake</h4>
+                        <p>High caffeine linked to <strong>increased stress</strong></p>
+                        <div class="trigger-bar">
+                            <div class="trigger-fill" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stress Management Tips -->
+            <section class="tips-section" aria-label="Stress management recommendations">
+                <h3 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                    </svg>
+                    Personalized Recommendations
+                </h3>
+
+                <div class="tips-grid">
+                    <div class="tip-card tip-high-priority">
+                        <div class="tip-header">
+                            <span class="tip-badge">High Priority</span>
+                            <h4>Breathing Exercise</h4>
+                        </div>
+                        <p>Based on your current stress level, a 5-minute breathing exercise could help lower your heart rate.</p>
+                        <button class="btn-primary">Start Exercise</button>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-header">
+                            <span class="tip-badge">Recommended</span>
+                            <h4>Gentle Walk</h4>
+                        </div>
+                        <p>A 10-minute walk can reduce stress by up to 30% based on your historical data.</p>
+                        <button class="btn-outline">Schedule Walk</button>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-header">
+                            <span class="tip-badge">Daily Tip</span>
+                            <h4>Hydration</h4>
+                        </div>
+                        <p>Stay hydrated! Aim for 6-8 glasses of water today. You've had 3 so far.</p>
+                        <button class="btn-outline">Set Reminder</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Historical Comparison -->
+            <section class="comparison-section" aria-label="Historical stress comparison">
+                <h3 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3v18h18"></path>
+                        <path d="M18 17V9"></path>
+                        <path d="M13 17V5"></path>
+                        <path d="M8 17v-3"></path>
+                    </svg>
+                    Weekly Stress Comparison
+                </h3>
+
+                <div class="comparison-chart">
+                    <canvas id="weeklyComparisonChart" aria-label="Weekly stress levels comparison"></canvas>
+                </div>
+
+                <div class="comparison-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">This Week Average</span>
+                        <span class="stat-value stat-good">32</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Last Week Average</span>
+                        <span class="stat-value">38</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Improvement</span>
+                        <span class="stat-value stat-excellent">-16%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Breathing Exercise Tool -->
+            <section class="breathing-section hidden" id="breathingExercise" aria-label="Guided breathing exercise">
+                <div class="breathing-container">
+                    <button class="breathing-close" aria-label="Close breathing exercise">×</button>
+                    <h3>Guided Breathing Exercise</h3>
+                    <p class="breathing-instruction">Follow the circle to breathe</p>
+                    
+                    <div class="breathing-circle-container">
+                        <svg class="breathing-circle" viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(79, 209, 197, 0.3)" stroke-width="2"/>
+                            <circle id="breathingIndicator" cx="100" cy="100" r="40" fill="rgba(79, 209, 197, 0.6)"/>
+                        </svg>
+                        <div class="breathing-text" id="breathingText">Breathe In</div>
+                    </div>
+
+                    <div class="breathing-timer">
+                        <span id="breathingTime">0:00</span> / 5:00
+                    </div>
+
+                    <div class="breathing-controls">
+                        <button class="btn-primary" id="startBreathing">Start</button>
+                        <button class="btn-outline" id="stopBreathing">Stop</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Connection Status Indicator -->
+    <div class="connection-status" id="connectionStatus">
+        <div class="status-dot"></div>
+        <span>Connected</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HeartWatcher AI - Intelligent Elderly Health Monitoring System">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>HeartWatcher AI - Health Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Emergency Alert Banner -->
+    <div id="emergency-banner" class="emergency-banner hidden" role="alert" aria-live="assertive">
+        <div class="emergency-content">
+            <div class="emergency-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </div>
+            <div class="emergency-text">
+                <h2>Emergency Alert Active</h2>
+                <p id="emergency-message">Abnormal heart activity detected. Help is being contacted.</p>
+            </div>
+            <button class="emergency-dismiss" aria-label="Dismiss alert">×</button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" role="navigation" aria-label="Main navigation">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                    </svg>
+                    <h1>HeartWatcher AI</h1>
+                </div>
+            </div>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="index.html" class="nav-link active" aria-current="page">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="stress.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                        <span>Stress Analysis</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="alerts.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+                        </svg>
+                        <span>Alerts & Medications</span>
+                        <span class="badge" id="alert-count">3</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button class="btn-voice" id="voiceAssistant" aria-label="Activate voice assistant">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 01-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <span>Voice Assistant</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-info">
+                    <h2>Welcome back, <span id="userName">John</span></h2>
+                    <p class="header-subtitle">
+                        <span id="currentDate">Tuesday, February 10, 2026</span> • 
+                        <span id="currentTime">2:34 PM</span>
+                    </p>
+                </div>
+
+                <div class="header-actions">
+                    <button class="btn-icon" id="settingsBtn" aria-label="Settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"></path>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" id="emergencyBtn" aria-label="Emergency call">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Health Status Overview -->
+            <section class="health-overview" aria-label="Current health status">
+                <div class="status-card status-excellent" id="overallStatus">
+                    <div class="status-indicator">
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring" style="animation-delay: 0.5s"></div>
+                        <div class="status-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="status-content">
+                        <h3>Health Status</h3>
+                        <p class="status-label">Excellent</p>
+                        <p class="status-description">All vitals within healthy range</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Live Vitals Grid -->
+            <section class="vitals-grid" aria-label="Live vital signs">
+                <!-- Heart Rate Card -->
+                <div class="vital-card" id="heartRateCard">
+                    <div class="vital-header">
+                        <div class="vital-icon vital-icon-heart">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                            </svg>
+                        </div>
+                        <h4>Heart Rate</h4>
+                    </div>
+                    <div class="vital-value">
+                        <span class="value-large" id="heartRateValue">72</span>
+                        <span class="value-unit">BPM</span>
+                    </div>
+                    <div class="vital-chart">
+                        <canvas id="heartRateChart" aria-label="Heart rate trend"></canvas>
+                    </div>
+                    <div class="vital-status">
+                        <span class="status-badge status-normal">Normal</span>
+                        <span class="vital-range">60-100 BPM</span>
+                    </div>
+                </div>
+
+                <!-- Blood Oxygen Card -->
+                <div class="vital-card" id="spo2Card">
+                    <div class="vital-header">
+                        <div class="vital-icon vital-icon-oxygen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 6v6l4 2"></path>
+                            </svg>
+                        </div>
+                        <h4>Blood Oxygen</h4>
+                    </div>
+                    <div class="vital-value">
+                        <span class="value-large" id="spo2Value">98</span>
+                        <span class="value-unit">%</span>
+                    </div>
+                    <div class="vital-chart">
+                        <canvas id="spo2Chart" aria-label="Blood oxygen trend"></canvas>
+                    </div>
+                    <div class="vital-status">
+                        <span class="status-badge status-normal">Normal</span>
+                        <span class="vital-range">95-100%</span>
+                    </div>
+                </div>
+
+                <!-- Heart Rate Variability Card -->
+                <div class="vital-card" id="hrvCard">
+                    <div class="vital-header">
+                        <div class="vital-icon vital-icon-hrv">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </div>
+                        <h4>Heart Rate Variability</h4>
+                    </div>
+                    <div class="vital-value">
+                        <span class="value-large" id="hrvValue">55</span>
+                        <span class="value-unit">ms</span>
+                    </div>
+                    <div class="vital-chart">
+                        <canvas id="hrvChart" aria-label="HRV trend"></canvas>
+                    </div>
+                    <div class="vital-status">
+                        <span class="status-badge status-good">Good</span>
+                        <span class="vital-range">40-70 ms</span>
+                    </div>
+                </div>
+
+                <!-- Activity Level Card -->
+                <div class="vital-card" id="activityCard">
+                    <div class="vital-header">
+                        <div class="vital-icon vital-icon-activity">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </div>
+                        <h4>Activity Level</h4>
+                    </div>
+                    <div class="vital-value">
+                        <span class="value-large" id="activityValue">Light</span>
+                    </div>
+                    <div class="activity-bar">
+                        <div class="activity-progress" id="activityProgress" style="width: 35%"></div>
+                    </div>
+                    <div class="vital-status">
+                        <span class="status-badge status-normal">Active</span>
+                        <span class="vital-range">2,340 steps today</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Insights & Predictions -->
+            <section class="insights-section" aria-label="AI health insights">
+                <h3 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
+                        <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                        <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                        <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    AI Health Insights
+                </h3>
+
+                <div class="insights-grid">
+                    <!-- Today's Summary -->
+                    <div class="insight-card">
+                        <div class="insight-header">
+                            <h4>Daily Summary</h4>
+                            <span class="insight-time">Today</span>
+                        </div>
+                        <div class="insight-content">
+                            <p>Your heart health is <strong>excellent</strong> today. All vitals have been stable for the past 24 hours.</p>
+                            <ul class="insight-list">
+                                <li>✓ Heart rate consistently normal</li>
+                                <li>✓ No stress episodes detected</li>
+                                <li>✓ Sleep quality: 8.5/10</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Predictive Alert -->
+                    <div class="insight-card insight-warning">
+                        <div class="insight-header">
+                            <h4>Predictive Insight</h4>
+                            <span class="insight-badge">AI Prediction</span>
+                        </div>
+                        <div class="insight-content">
+                            <p>Based on your patterns, you may experience slight fatigue around 4 PM. Consider a short rest.</p>
+                            <button class="btn-outline btn-small">Set Reminder</button>
+                        </div>
+                    </div>
+
+                    <!-- Medication Reminder -->
+                    <div class="insight-card insight-info">
+                        <div class="insight-header">
+                            <h4>Upcoming Medication</h4>
+                            <span class="insight-time">In 45 minutes</span>
+                        </div>
+                        <div class="insight-content">
+                            <div class="medication-item">
+                                <div class="med-icon">💊</div>
+                                <div class="med-info">
+                                    <p><strong>Metoprolol</strong></p>
+                                    <p class="med-dose">25mg tablet</p>
+                                </div>
+                            </div>
+                            <button class="btn-primary btn-small">Mark as Taken</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Historical Trends -->
+            <section class="trends-section" aria-label="Health trends">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"></path>
+                            <path d="M18 17V9"></path>
+                            <path d="M13 17V5"></path>
+                            <path d="M8 17v-3"></path>
+                        </svg>
+                        Weekly Trends
+                    </h3>
+                    <div class="time-selector">
+                        <button class="time-btn active" data-range="week">Week</button>
+                        <button class="time-btn" data-range="month">Month</button>
+                        <button class="time-btn" data-range="year">Year</button>
+                    </div>
+                </div>
+
+                <div class="trends-chart-container">
+                    <canvas id="trendsChart" aria-label="Weekly health trends chart"></canvas>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions" aria-label="Quick actions">
+                <h3 class="section-title">Quick Actions</h3>
+                <div class="actions-grid">
+                    <button class="action-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                        <span>Generate Report</span>
+                    </button>
+                    <button class="action-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 010 7.75"></path>
+                        </svg>
+                        <span>Contact Caregiver</span>
+                    </button>
+                    <button class="action-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"></path>
+                        </svg>
+                        <span>Device Settings</span>
+                    </button>
+                    <button class="action-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>History</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Connection Status Indicator -->
+    <div class="connection-status" id="connectionStatus">
+        <div class="status-dot"></div>
+        <span>Connected</span>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading health data...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

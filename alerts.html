@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HeartWatcher AI - Alerts & Medication Management">
+    <title>Alerts & Medications - HeartWatcher AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" role="navigation" aria-label="Main navigation">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                    </svg>
+                    <h1>HeartWatcher AI</h1>
+                </div>
+            </div>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="index.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="stress.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                        <span>Stress Analysis</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="alerts.html" class="nav-link active" aria-current="page">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+                        </svg>
+                        <span>Alerts & Medications</span>
+                        <span class="badge">3</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button class="btn-voice" id="voiceAssistant" aria-label="Activate voice assistant">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 01-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <span>Voice Assistant</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-info">
+                    <h2>Alerts & Medications</h2>
+                    <p class="header-subtitle">Stay on top of your health notifications and medication schedule</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-primary" id="addMedicationBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Medication
+                    </button>
+                    <button class="btn-icon" aria-label="Settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Active Alerts Section -->
+            <section class="alerts-section" aria-label="Active alerts">
+                <h3 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+                    </svg>
+                    Active Alerts
+                    <span class="alert-count-badge">3</span>
+                </h3>
+
+                <div class="alerts-list">
+                    <!-- High Priority Alert -->
+                    <div class="alert-card alert-high" role="alert">
+                        <div class="alert-indicator"></div>
+                        <div class="alert-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div class="alert-content">
+                            <div class="alert-header">
+                                <h4>Heart Rate Spike Detected</h4>
+                                <span class="alert-time">5 minutes ago</span>
+                            </div>
+                            <p class="alert-description">Your heart rate increased to 110 BPM, which is above your normal baseline. Currently returning to normal.</p>
+                            <div class="alert-vitals">
+                                <span>HR: 110 → 85 BPM</span>
+                                <span>SpO2: 97%</span>
+                                <span>Status: Recovering</span>
+                            </div>
+                            <div class="alert-actions">
+                                <button class="btn-outline btn-small">View Details</button>
+                                <button class="btn-text">Dismiss</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medium Priority Alert -->
+                    <div class="alert-card alert-medium" role="alert">
+                        <div class="alert-indicator"></div>
+                        <div class="alert-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                        </div>
+                        <div class="alert-content">
+                            <div class="alert-header">
+                                <h4>Similar Pattern to Previous Episode</h4>
+                                <span class="alert-time">2 hours ago</span>
+                            </div>
+                            <p class="alert-description">AI detected a pattern similar to your episode on Jan 28, 2026. No immediate concern, but monitor closely.</p>
+                            <div class="alert-match">
+                                <span class="match-label">Pattern Match:</span>
+                                <div class="match-bar">
+                                    <div class="match-fill" style="width: 78%"></div>
+                                </div>
+                                <span class="match-value">78%</span>
+                            </div>
+                            <div class="alert-actions">
+                                <button class="btn-outline btn-small">Compare Episodes</button>
+                                <button class="btn-text">Acknowledge</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Low Priority Alert -->
+                    <div class="alert-card alert-low" role="status">
+                        <div class="alert-indicator"></div>
+                        <div class="alert-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                        <div class="alert-content">
+                            <div class="alert-header">
+                                <h4>Device Battery Low</h4>
+                                <span class="alert-time">3 hours ago</span>
+                            </div>
+                            <p class="alert-description">Your wearable sensor battery is at 15%. Please charge soon to ensure continuous monitoring.</p>
+                            <div class="alert-actions">
+                                <button class="btn-outline btn-small">Battery Status</button>
+                                <button class="btn-text">Remind Me Later</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Medication Schedule Section -->
+            <section class="medication-section" aria-label="Medication schedule">
+                <h3 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Today's Medication Schedule
+                </h3>
+
+                <div class="medication-timeline">
+                    <!-- Morning Medications -->
+                    <div class="medication-time-group">
+                        <div class="time-group-header">
+                            <div class="time-badge">8:00 AM</div>
+                            <span class="time-label">Morning</span>
+                        </div>
+                        <div class="medication-cards">
+                            <div class="medication-card medication-taken">
+                                <div class="medication-check">✓</div>
+                                <div class="medication-info">
+                                    <div class="medication-name">
+                                        <h4>Metoprolol</h4>
+                                        <span class="medication-dose">25mg tablet</span>
+                                    </div>
+                                    <p class="medication-purpose">Blood pressure control</p>
+                                    <div class="medication-instructions">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M12 16v-4"></path>
+                                            <path d="M12 8h.01"></path>
+                                        </svg>
+                                        Take with food
+                                    </div>
+                                </div>
+                                <div class="medication-status">
+                                    <span class="status-badge status-taken">Taken at 8:05 AM</span>
+                                </div>
+                            </div>
+
+                            <div class="medication-card medication-taken">
+                                <div class="medication-check">✓</div>
+                                <div class="medication-info">
+                                    <div class="medication-name">
+                                        <h4>Aspirin</h4>
+                                        <span class="medication-dose">81mg tablet</span>
+                                    </div>
+                                    <p class="medication-purpose">Heart health maintenance</p>
+                                    <div class="medication-instructions">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M12 16v-4"></path>
+                                            <path d="M12 8h.01"></path>
+                                        </svg>
+                                        Take with water
+                                    </div>
+                                </div>
+                                <div class="medication-status">
+                                    <span class="status-badge status-taken">Taken at 8:05 AM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Afternoon Medications -->
+                    <div class="medication-time-group">
+                        <div class="time-group-header">
+                            <div class="time-badge time-upcoming">3:00 PM</div>
+                            <span class="time-label">Afternoon</span>
+                        </div>
+                        <div class="medication-cards">
+                            <div class="medication-card medication-pending">
+                                <div class="medication-reminder-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                        <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+                                    </svg>
+                                </div>
+                                <div class="medication-info">
+                                    <div class="medication-name">
+                                        <h4>Metoprolol</h4>
+                                        <span class="medication-dose">25mg tablet</span>
+                                    </div>
+                                    <p class="medication-purpose">Blood pressure control</p>
+                                    <div class="medication-countdown">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                        Due in 25 minutes
+                                    </div>
+                                </div>
+                                <div class="medication-actions">
+                                    <button class="btn-primary btn-small">Mark as Taken</button>
+                                    <button class="btn-text">Snooze 15 min</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Evening Medications -->
+                    <div class="medication-time-group">
+                        <div class="time-group-header">
+                            <div class="time-badge time-future">8:00 PM</div>
+                            <span class="time-label">Evening</span>
+                        </div>
+                        <div class="medication-cards">
+                            <div class="medication-card medication-scheduled">
+                                <div class="medication-info">
+                                    <div class="medication-name">
+                                        <h4>Atorvastatin</h4>
+                                        <span class="medication-dose">20mg tablet</span>
+                                    </div>
+                                    <p class="medication-purpose">Cholesterol management</p>
+                                    <div class="medication-instructions">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M12 16v-4"></path>
+                                            <path d="M12 8h.01"></path>
+                                        </svg>
+                                        Take before bedtime
+                                    </div>
+                                </div>
+                                <div class="medication-status">
+                                    <span class="status-badge status-scheduled">Scheduled</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Medication Adherence -->
+            <section class="adherence-section" aria-label="Medication adherence">
+                <h3 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3v18h18"></path>
+                        <path d="M18 17V9"></path>
+                        <path d="M13 17V5"></path>
+                        <path d="M8 17v-3"></path>
+                    </svg>
+                    Medication Adherence
+                </h3>
+
+                <div class="adherence-overview">
+                    <div class="adherence-score-card">
+                        <div class="adherence-ring">
+                            <svg viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#2a2a3e" stroke-width="10"/>
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#4CAF50" stroke-width="10" 
+                                    stroke-dasharray="314" stroke-dashoffset="31.4" 
+                                    transform="rotate(-90 60 60)" stroke-linecap="round"/>
+                            </svg>
+                            <div class="adherence-percentage">
+                                <span class="value-large">90%</span>
+                                <span class="value-label">This Week</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="adherence-stats">
+                        <div class="stat-card">
+                            <h4>Taken on Time</h4>
+                            <p class="stat-value stat-excellent">18/20</p>
+                            <p class="stat-description">This week</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Missed Doses</h4>
+                            <p class="stat-value stat-warning">2</p>
+                            <p class="stat-description">This week</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Current Streak</h4>
+                            <p class="stat-value stat-good">5 days</p>
+                            <p class="stat-description">Perfect adherence</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="adherence-chart">
+                    <h4>Weekly Adherence Pattern</h4>
+                    <canvas id="adherenceChart" aria-label="Weekly medication adherence chart"></canvas>
+                </div>
+            </section>
+
+            <!-- Alert History -->
+            <section class="history-section" aria-label="Alert history">
+                <h3 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Recent Alert History
+                </h3>
+
+                <div class="history-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="high">High Priority</button>
+                    <button class="filter-btn" data-filter="medium">Medium</button>
+                    <button class="filter-btn" data-filter="resolved">Resolved</button>
+                </div>
+
+                <div class="history-list">
+                    <div class="history-item">
+                        <div class="history-date">
+                            <span class="date-day">10</span>
+                            <span class="date-month">Feb</span>
+                        </div>
+                        <div class="history-content">
+                            <h4>Heart Rate Spike</h4>
+                            <p>Elevated heart rate detected during afternoon. Resolved within 15 minutes.</p>
+                            <div class="history-meta">
+                                <span class="severity-badge severity-high">High</span>
+                                <span class="history-time">2:30 PM</span>
+                            </div>
+                        </div>
+                        <button class="btn-text">View</button>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-date">
+                            <span class="date-day">09</span>
+                            <span class="date-month">Feb</span>
+                        </div>
+                        <div class="history-content">
+                            <h4>Missed Medication Reminder</h4>
+                            <p>Evening dose of Atorvastatin was taken 2 hours late.</p>
+                            <div class="history-meta">
+                                <span class="severity-badge severity-low">Low</span>
+                                <span class="history-time">10:00 PM</span>
+                            </div>
+                        </div>
+                        <button class="btn-text">View</button>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-date">
+                            <span class="date-day">08</span>
+                            <span class="date-month">Feb</span>
+                        </div>
+                        <div class="history-content">
+                            <h4>Low Blood Oxygen</h4>
+                            <p>SpO2 dropped to 93%. Returned to normal after adjusting position.</p>
+                            <div class="history-meta">
+                                <span class="severity-badge severity-medium">Medium</span>
+                                <span class="history-time">11:45 PM</span>
+                            </div>
+                        </div>
+                        <button class="btn-text">View</button>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-date">
+                            <span class="date-day">07</span>
+                            <span class="date-month">Feb</span>
+                        </div>
+                        <div class="history-content">
+                            <h4>Pattern Match Alert</h4>
+                            <p>Similar pattern to previous concerning episode detected.</p>
+                            <div class="history-meta">
+                                <span class="severity-badge severity-medium">Medium</span>
+                                <span class="history-time">3:15 PM</span>
+                            </div>
+                        </div>
+                        <button class="btn-text">View</button>
+                    </div>
+                </div>
+
+                <button class="btn-outline btn-full-width">Load More History</button>
+            </section>
+
+            <!-- Emergency Contact Quick Access -->
+            <section class="emergency-contact-section" aria-label="Emergency contacts">
+                <h3 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+                    </svg>
+                    Emergency Contacts
+                </h3>
+
+                <div class="emergency-contacts-grid">
+                    <div class="contact-card contact-primary">
+                        <div class="contact-badge">Primary</div>
+                        <div class="contact-avatar">👨‍⚕️</div>
+                        <h4>Dr. Sarah Johnson</h4>
+                        <p class="contact-role">Cardiologist</p>
+                        <button class="btn-primary btn-full-width">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+                            </svg>
+                            Call Now
+                        </button>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-avatar">👨‍👩‍👦</div>
+                        <h4>Emily (Daughter)</h4>
+                        <p class="contact-role">Family Caregiver</p>
+                        <button class="btn-outline btn-full-width">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+                            </svg>
+                            Call
+                        </button>
+                    </div>
+
+                    <div class="contact-card contact-emergency">
+                        <div class="contact-badge contact-badge-emergency">Emergency</div>
+                        <div class="contact-avatar">🚑</div>
+                        <h4>Emergency Services</h4>
+                        <p class="contact-role">911</p>
+                        <button class="btn-emergency btn-full-width">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+                            </svg>
+                            Emergency Call
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Connection Status Indicator -->
+    <div class="connection-status" id="connectionStatus">
+        <div class="status-dot"></div>
+        <span>Connected</span>
+    </div>
+
+    <!-- Medication Modal -->
+    <div class="modal hidden" id="medicationModal" role="dialog" aria-labelledby="modalTitle">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Medication</h3>
+                <button class="modal-close" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="medicationForm">
+                    <div class="form-group">
+                        <label for="medName">Medication Name</label>
+                        <input type="text" id="medName" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medDose">Dosage</label>
+                        <input type="text" id="medDose" class="form-input" placeholder="e.g., 25mg" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medFrequency">Frequency</label>
+                        <select id="medFrequency" class="form-input" required>
+                            <option value="">Select frequency</option>
+                            <option value="once">Once daily</option>
+                            <option value="twice">Twice daily</option>
+                            <option value="thrice">Three times daily</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="medTime">Time(s)</label>
+                        <input type="time" id="medTime" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medInstructions">Instructions</label>
+                        <textarea id="medInstructions" class="form-input" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" id="cancelMedication">Cancel</button>
+                <button class="btn-primary" id="saveMedication">Save Medication</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
