@@ -52,5 +52,8 @@ If BPM suddenly spikes (tachycardia) or drops sharply (bradycardia), the system 
 
 To reduce response time during cardiac events and provide early warnings that can potentially save lives.
 
+Author 
+Syed Hamza Noor
+
 
 
